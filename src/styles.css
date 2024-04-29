@@ -1,0 +1,14 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  font-size: 62.5%;
+  --bg-color: #151d1f;
+}
+
+body {
+  background-color: var(--bg-color);
+}
