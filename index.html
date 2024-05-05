@@ -10,16 +10,22 @@
 </head>
 <body>
   <main class="app">
-    <div class="search-wrapper">
-      <label for="search-input" class="sr-only">Search for a gif</label>
-      <input type="text" id="search-input" value="laugh" placeholder="Search for a gif">
-      <button id="search-btn">
-        <i class="fa-solid fa-magnifying-glass"></i>
-      </button>
-    </div>
+    <header>
+      <h1>Gif Search</h1>
 
-    <div class="loader"></div>
-    <div class="gif-wrapper"></div>
+      <div class="search-wrapper">        
+        <label for="search-input" class="sr-only">Search for a gif</label>
+        <input type="text" id="search-input" value="laugh" placeholder="Search for a gif">
+        <button id="search-btn">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+      </div>
+    </header>
+
+    <section class="content">
+      <div class="loader"></div>
+      <div class="gif-wrapper"></div>
+    </section>
   </main>
 </body>
 </html>

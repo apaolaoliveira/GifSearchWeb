@@ -1,26 +1,24 @@
 .search-wrapper {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform:  translate(-50%,50%);
   background: #2f3640;
   height: 60px;
   border-radius: 4rem;
   padding: 1rem;
 }
 
-.search-wrapper:hover > #search-input {
+.search-wrapper:hover > #search-input,
+.search-wrapper:focus-within > #search-input {
   width: 240px;
   padding: 0 .6rem;
 }
 
-.search-wrapper:hover > #search-btn {
+.search-wrapper:hover > #search-btn,
+.search-wrapper:focus-within > #search-btn {
   background: white;
-  color : var(--input-color);
+  color : var(--primary-color);
 }
 
 #search-btn {
-  background: var(--input-color);
+  background: var(--primary-color);
   color: white;
   width: 40px;
   height: 40px;
