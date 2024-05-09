@@ -4,6 +4,7 @@ export class GiphyView extends GiphyService {
   constructor(root){
     super(root);  
     this.onSearchClick();  
+    this.trendingGifs(); 
   }
 
   onSearchClick(){
