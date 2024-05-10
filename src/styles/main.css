@@ -11,8 +11,11 @@
 :root {
   font-size: 62.5%;
   --base-font: "Poppins", sans-serif;
-  --bg-color: #92b8c2;
-  --primary-color: #2f3640;
+  --bg-color: #000;
+  --bg-gradient: linear-gradient(90deg, #9339fb 0%, #04fa9c 100%);
+  --primary-color: #9339fb;
+  --secondary-color: #4ca9e2;
+  --tertiary-color: #04fa9c;
 }
 
 body {
@@ -38,10 +41,14 @@ header {
   margin: 5rem 0;
   height: max-content;
   width: 70vw;
+  animation: fadeInDown;
+  animation-duration: 2s;
 }
 
 header h1 {
   text-transform: uppercase;
   font-size: 2.4rem;
-  color: var(--primary-color);
+  background: var(--bg-gradient);
+  color: transparent;
+  background-clip: text;
 }
