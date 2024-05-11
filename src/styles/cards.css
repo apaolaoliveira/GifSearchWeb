@@ -1,0 +1,53 @@
+.gif-wrapper {
+  display: grid;
+}
+
+.gif-card {
+  background-color: #2e2e2e;
+  color: white;
+  padding: 3rem;
+  border-radius: 1rem;
+
+  display: grid;
+  grid-template-rows: repeat(2, max-content);
+  height: max-content;
+}
+
+.gif-info {
+  display: grid;
+  grid-template-rows: repeat(2, max-content);
+}
+
+.gif-info img {
+  height: 250px;
+  width: 250px;
+}
+
+.gif-info p {
+  margin: 3rem 0;
+  font-size: 1.8rem;
+  text-transform: uppercase;
+}
+
+.user-info {
+  height: max-content;
+  display: flex;
+  justify-content: start;
+}
+
+.user-info a {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  color: white;
+  font-size: 1.6rem;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.user-info img {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+}
