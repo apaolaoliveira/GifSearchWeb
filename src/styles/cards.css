@@ -5,9 +5,7 @@
 }
 
 .gif-card {
-  background-color: #2e2e2e;
   color: white;
-  padding: 3rem;
   border-radius: 1rem;
 
   display: grid;
@@ -20,32 +18,52 @@
 .gif-info {
   display: grid;
   grid-template-rows: repeat(2, max-content);
+  order: 1;
 }
 
 .gif-info a {
   position: absolute;
-  bottom: -15px;
-  right: -15px;
-  background-color: white;
-  padding: 3rem;
-  border-radius: 15rem 5rem 5rem;
+  top: 1.3rem;
+  right: 1.3rem;
+  border-radius: 50%;
 
   text-decoration: none;
-  font-size: 1.8rem;
-  color: var(--primary-color);
+  font-size: 1.6rem;
+  color: white;
   cursor: pointer;
   display: none;
 }
 
 .gif-card:hover .gif-info a {
   display: block;
-  animation: fadeInBottomRight;
+  animation: fadeInRight;
   animation-duration: 1s;
 }
 
-.gif-info img {
+.gif-info .img-wrapper {
+  position: relative;
+}
+
+.gif-info .img-wrapper img {
   height: 250px;
   width: 250px;
+  border-radius: 1rem;
+}
+
+.gif-info .img-wrapper p {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.5);
+  bottom: -15px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  display: none;
+}
+
+.gif-card:hover .img-wrapper p {
+  display: block;
+  animation: fadeInUp;
+  animation-duration: 1s;
 }
 
 .gif-info p {
@@ -58,6 +76,7 @@
   height: max-content;
   display: flex;
   justify-content: start;
+  margin: 1rem;
 }
 
 .user-info a {
@@ -66,13 +85,13 @@
   gap: 1rem;
 
   color: white;
-  font-size: 1.6rem;
+  font-size: 1.5rem;
   text-decoration: none;
   text-transform: uppercase;
 }
 
 .user-info img {
-  height: 40px;
-  width: 40px;
+  height: 30px;
+  width: 30px;
   border-radius: 50%;
 }
