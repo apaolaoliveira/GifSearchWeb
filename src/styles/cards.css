@@ -1,5 +1,7 @@
 .gif-wrapper {
   display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem;
 }
 
 .gif-card {
@@ -11,11 +13,34 @@
   display: grid;
   grid-template-rows: repeat(2, max-content);
   height: max-content;
+  position: relative;
+  overflow: hidden;
 }
 
 .gif-info {
   display: grid;
   grid-template-rows: repeat(2, max-content);
+}
+
+.gif-info a {
+  position: absolute;
+  bottom: -15px;
+  right: -15px;
+  background-color: white;
+  padding: 3rem;
+  border-radius: 15rem 5rem 5rem;
+
+  text-decoration: none;
+  font-size: 1.8rem;
+  color: var(--primary-color);
+  cursor: pointer;
+  display: none;
+}
+
+.gif-card:hover .gif-info a {
+  display: block;
+  animation: fadeInBottomRight;
+  animation-duration: 1s;
 }
 
 .gif-info img {
@@ -24,7 +49,7 @@
 }
 
 .gif-info p {
-  margin: 3rem 0;
+  margin: 1.5rem 0;
   font-size: 1.8rem;
   text-transform: uppercase;
 }

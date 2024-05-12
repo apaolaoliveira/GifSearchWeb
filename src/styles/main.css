@@ -43,7 +43,6 @@ header {
   justify-content: space-between;
   margin: 5rem 0 3rem;
   height: max-content;
-  width: 70vw;
   animation: fadeInDown;
   animation-duration: 2s;
 }
