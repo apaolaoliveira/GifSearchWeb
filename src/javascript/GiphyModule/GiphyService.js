@@ -10,7 +10,15 @@ export class GiphyService {
     
     return fetch(endpoint)
      .then(response => response.json())
-     .then(data => console.log(data));
+     .then(({ data }) => ({
+      gifTitle: data[0].title,
+      gifImageUrl: data[0].images[0].original,
+      altText: data[0].images[0].alt_text,
+      gifUrl: data[0].url,
+      userAvatarUrl: data[0].user[0].avatar_url,
+      username: data[0].user[0].username,
+      userProfileUrl: data[0].user[0].profile_url
+    }));
   }
 
   trendingGifs(){
