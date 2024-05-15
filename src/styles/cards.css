@@ -48,6 +48,7 @@
   height: 250px;
   width: 250px;
   border-radius: 1rem;
+  object-fit: cover;
 }
 
 .gif-info .img-wrapper p {
@@ -83,15 +84,17 @@
   display: flex;
   align-items: center;
   gap: 1rem;
-
-  color: white;
-  font-size: 1.5rem;
   text-decoration: none;
-  text-transform: uppercase;
 }
 
 .user-info img {
   height: 30px;
   width: 30px;
   border-radius: 50%;
+}
+
+.user-info span {
+  color: white;
+  font-size: 1.5rem;
+  text-transform: uppercase;
 }

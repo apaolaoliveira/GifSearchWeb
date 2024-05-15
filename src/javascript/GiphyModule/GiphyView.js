@@ -3,6 +3,7 @@ import { GiphyService } from './GiphyService.js';
 export class GiphyView extends GiphyService {
   constructor(root){
     super(root);  
+    this.wrapper = this.root.querySelector('.gif-wrapper');
     this.onSearchClick();  
     // this.trendingGifs(); 
   }
@@ -10,41 +11,79 @@ export class GiphyView extends GiphyService {
   onSearchClick(){
     this.root.querySelector('#search-btn').onclick = () => {
       const { value } = this.root.querySelector('#search-input');
-      this.searchGif(value);
+      this.displayGifs(value);
     }
   }
 
-  updateCards(){
+  updateDisplay(gifs){
     this.removeAllCards();
+
+    gifs.forEach(gif => {
+      const card = this.generateCard();
+
+      const selectorsMap = {
+        gifTitle: '#title',
+        gifImg: '#gifImg',
+        gifImgAlt: '#gifImg',
+        gifUrl: '#gifLink',
+        userProfileUrl: '#userLink',
+        userAvatarImg: '#avatar',
+        username: '#username',
+      }
+
+      Object.entries(selectorsMap).forEach(([key, selector]) => {
+        console.log( gif[key])
+        const element = card.querySelector(selector);
+
+        if (element) {
+          switch (key) {
+            case 'gifImg':
+            case 'userAvatarImg':
+              element.src = gif[key];
+              break;
+            case 'gifImgAlt':
+              element.alt = gif[key];
+              break;
+            case 'gifUrl':
+            case 'userProfileUrl':
+              element.href = gif[key];
+              break;
+            default:
+              element.textContent = gif[key];
+              break;
+          }
+        }
+      });
+
+      this.wrapper.appendChild(card);
+    });
   }
 
   generateCard(){
-    const wrapper = this.root.querySelector('.gif-wrapper');
-    const cardDiv = document.createElement('div').classList.add('gif-card');
-
-    const card = 
+    const cardDiv = document.createElement('div');
+    cardDiv.classList.add('gif-card');
+    cardDiv.innerHTML =
     `<div class="gif-info">
-       <a title="Gif link" id="gifLink" href="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExaXZxcGNsamtwcG90eGhyaWR3Zm5waGlxb2UyYWZscnJnb2Vwd3h1aSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/MeIucAjPKoA120R7sN/giphy.gif" target="_blank">
+       <a title="Gif link" id="gifLink" href="" target="_blank">
          <i class="fa-solid fa-link"></i>
        </a>
        <div class="img-wrapper">
-         <img id="gifImg" src="https://media1.giphy.com/media/MeIucAjPKoA120R7sN/giphy.gif" alt="">
-         <p id="title">Happy Cheering GIF</p>
+         <img id="gifImg" src="" alt="">
+         <p id="title"></p>
        </div>
      </div>
      
      <div class="user-info">
-       <a title="User link" id="userLink" href="https://giphy.com/bluesbear/" target="_blank">
-         <img id="avatar" src="https://media4.giphy.com/avatars/bluesbear/h2D5VMcO6KLj.png" alt="">
-         <span id="username">bluesbear</spa>
+       <a title="User link" id="userLink" href="" target="_blank">
+         <img id="avatar" src="" alt="">
+         <span id="username"></span>
        </a>
-     </div>`
+     </div>`;
 
-    cardDiv.innerHTML = card;
-    wrapper.appendChild(cardDiv);
+    return cardDiv;
   }
 
   removeAllCards(){
-    this.root.querySelector('.gif-wrapper').innerHTML = '';
+    this.wrapper.innerHTML = '';
   }
 }

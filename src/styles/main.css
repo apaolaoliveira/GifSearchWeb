@@ -31,7 +31,6 @@ body * {
 
 .app {
   min-height: 100vh;
-  width: 80vw;
   margin: 0 auto;
   display: grid;
   grid-template-rows: max-content 1fr;
@@ -41,11 +40,11 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 5rem 0 3rem;
+  margin: 5rem 0;
   height: max-content;
   animation: fadeInDown;
   animation-duration: 2s;
-  width: 80vw;
+  width: 100%;
 }
 
 header h1 {
