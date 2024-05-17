@@ -9,7 +9,6 @@ export class GiphyService {
     try {
       const gifs = await Giphy.search(query);
       this.updateDisplay(gifs);
-
     } catch (err) {
       console.log(err.message);
     }

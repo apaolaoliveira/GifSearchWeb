@@ -32,7 +32,6 @@ export class GiphyView extends GiphyService {
       }
 
       Object.entries(selectorsMap).forEach(([key, selector]) => {
-        console.log( gif[key])
         const element = card.querySelector(selector);
 
         if (element) {

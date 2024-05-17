@@ -15,6 +15,11 @@
   overflow: hidden;
 }
 
+.gif-card.animation {
+  animation: fadeIn;
+  animation-duration: 1s;
+}
+
 .gif-info {
   display: grid;
   grid-template-rows: repeat(2, max-content);

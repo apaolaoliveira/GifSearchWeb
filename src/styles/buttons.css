@@ -1,0 +1,42 @@
+.btns-wrapper {
+  display: flex;
+  align-items: center;
+  justify-self: center;
+
+  background-color: #2f3640;
+  border-radius: 2rem;
+  width: max-content;
+}
+
+.btns-wrapper button {
+  border: none;
+  background: transparent;
+  color: #969696;
+  font-size: 1.6rem;
+  cursor: pointer;
+  border-radius: 2rem;
+}
+
+.gifs-btn {
+  padding: .5rem 4.65rem;
+}
+
+.stickers-btn {
+  padding: .5rem 3rem;
+}
+
+.gifs-btn.activated,
+.stickers-btn.activated {
+  font-weight: 600;
+  color: white;
+}
+
+.gifs-btn.activated {
+  background: linear-gradient(90deg, #883dff 0%, #6951ff 100%) !important;
+  text-shadow: -2px 2px 2px #6337cb;
+}
+
+.stickers-btn.activated {
+  background: linear-gradient(90deg, #00d3f0 0%, #00f6aa 100%) !important;
+  text-shadow: -2px 2px 2px #00b998;
+}
