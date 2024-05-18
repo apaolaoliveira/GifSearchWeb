@@ -7,7 +7,7 @@ export class GiphyService {
 
   async displayGifs(query){
     try {
-      const gifs = await Giphy.search(query);
+      const gifs = await Giphy.searchGifs(query);
       this.updateDisplay(gifs);
     } catch (err) {
       console.log(err.message);
