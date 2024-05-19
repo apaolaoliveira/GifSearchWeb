@@ -16,8 +16,10 @@
 }
 
 .gif-card.animation {
-  animation: fadeIn;
+  animation: zoomIn;
+  animation-delay: var(--delay);
   animation-duration: 1s;
+  animation-fill-mode: backwards;
 }
 
 .gif-info {

@@ -4,6 +4,7 @@ export class GiphyView extends GiphyService {
   constructor(root){
     super(root); 
     this.wrapper = this.root.querySelector('.gif-wrapper');
+    this.animationDelay = 0;
     this.onSearchClick();  
   }
 
@@ -56,6 +57,10 @@ export class GiphyView extends GiphyService {
         }
       });
 
+      card.classList.add('animation');
+      card.style.animationDelay = `${this.animationDelay}s`;
+      this.animationDelay += .4;
+      
       this.wrapper.appendChild(card);
     });
   }
