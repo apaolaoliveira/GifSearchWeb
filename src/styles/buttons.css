@@ -6,6 +6,9 @@
   background-color: #2f3640;
   border-radius: 2rem;
   width: max-content;
+
+  animation: fadeInDown;
+  animation-duration: 2s;
 }
 
 .btns-wrapper button {

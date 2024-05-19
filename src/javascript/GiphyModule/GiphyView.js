@@ -17,7 +17,7 @@ export class GiphyView extends GiphyService {
   updateDisplay(list){
     this.removeAllCards();
 
-    list.forEach(index => {
+    list.forEach(currentElement => {
       const card = this.generateCard();
 
       const selectorsMap = {
@@ -33,23 +33,26 @@ export class GiphyView extends GiphyService {
       Object.entries(selectorsMap).forEach(([key, selector]) => {
         const element = card.querySelector(selector);
 
-        if (element) {
-          switch (key) {
-            case 'elementImg':
-            case 'userAvatarImg':
-              element.src = index[key];
-              break;
-            case 'elementImgAlt':
-              element.alt = index[key];
-              break;
-            case 'elementUrl':
-            case 'userProfileUrl':
-              element.href = index[key];
-              break;
-            default:
-              element.textContent = index[key];
-              break;
-          }
+        switch (key) {
+          case 'elementImg':
+            element.src = currentElement[key];
+            break;          
+          case 'elementImgAlt':
+            element.alt = currentElement[key];
+            break;
+          case 'elementUrl':
+          case 'userProfileUrl':
+            element.href = currentElement[key] || '#';
+            break;
+          case 'userAvatarImg':
+            element.src = currentElement[key] || this.randomMockUserImg();
+            break;
+          case 'username':	
+            element.textContent = currentElement[key] || 'unknown';
+            break;
+          default:
+            element.textContent = currentElement[key];
+            break;
         }
       });
 
@@ -83,5 +86,10 @@ export class GiphyView extends GiphyService {
 
   removeAllCards(){
     this.wrapper.innerHTML = '';
+  }
+
+  randomMockUserImg(){
+    let randomNumber = Math.floor(Math.random() * 4) + 1;
+    return `src/assets/userNotFound/mockUser${randomNumber}.jpg`;
   }
 }
