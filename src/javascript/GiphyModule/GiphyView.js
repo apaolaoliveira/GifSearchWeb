@@ -2,30 +2,29 @@ import { GiphyService } from './GiphyService.js';
 
 export class GiphyView extends GiphyService {
   constructor(root){
-    super(root);  
+    super(root); 
     this.wrapper = this.root.querySelector('.gif-wrapper');
     this.onSearchClick();  
-    // this.trendingGifs(); 
   }
 
   onSearchClick(){
     this.root.querySelector('#search-btn').onclick = () => {
       const { value } = this.root.querySelector('#search-input');
-      this.displayGifs(value);
+      this.displayData('searchGifs', value);
     }
   }
 
-  updateDisplay(gifs){
+  updateDisplay(list){
     this.removeAllCards();
 
-    gifs.forEach(gif => {
+    list.forEach(index => {
       const card = this.generateCard();
 
       const selectorsMap = {
-        gifTitle: '#title',
-        gifImg: '#gifImg',
-        gifImgAlt: '#gifImg',
-        gifUrl: '#gifLink',
+        elementTitle: '#title',
+        elementImg: '#elementImg',
+        elementImgAlt: '#elementImg',
+        elementUrl: '#elementUrl',
         userProfileUrl: '#userLink',
         userAvatarImg: '#avatar',
         username: '#username',
@@ -36,19 +35,19 @@ export class GiphyView extends GiphyService {
 
         if (element) {
           switch (key) {
-            case 'gifImg':
+            case 'elementImg':
             case 'userAvatarImg':
-              element.src = gif[key];
+              element.src = index[key];
               break;
-            case 'gifImgAlt':
-              element.alt = gif[key];
+            case 'elementImgAlt':
+              element.alt = index[key];
               break;
-            case 'gifUrl':
+            case 'elementUrl':
             case 'userProfileUrl':
-              element.href = gif[key];
+              element.href = index[key];
               break;
             default:
-              element.textContent = gif[key];
+              element.textContent = index[key];
               break;
           }
         }
@@ -63,11 +62,11 @@ export class GiphyView extends GiphyService {
     cardDiv.classList.add('gif-card');
     cardDiv.innerHTML =
     `<div class="gif-info">
-       <a title="Gif link" id="gifLink" href="" target="_blank">
+       <a title="Gif link" id="elementUrl" href="" target="_blank">
          <i class="fa-solid fa-link"></i>
        </a>
        <div class="img-wrapper">
-         <img id="gifImg" src="" alt="">
+         <img id="elementImg" src="" alt="">
          <p id="title"></p>
        </div>
      </div>

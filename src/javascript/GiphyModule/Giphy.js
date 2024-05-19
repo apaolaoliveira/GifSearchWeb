@@ -26,10 +26,10 @@ export class Giphy {
      .then(response => response.json())
      .then(data => {
        return data.data.map(gif => ({
-          gifTitle: gif.title,
-          gifImg: gif.images.original.url,
-          gifImgAlt: gif.alt_text,
-          gifUrl: gif.url,
+          elementTitle: gif.title,
+          elementImg: gif.images.original.url,
+          elementImgAlt: gif.alt_text,
+          elementUrl: gif.url,
           userProfileUrl: gif.user?.profile_url || null,
           userAvatarImg: gif.user?.avatar_url || null,
           username: gif.user?.username || null,
@@ -42,9 +42,9 @@ export class Giphy {
      .then(response => response.json())
      .then(data => {
        return data.data.map(sticker => ({
-          stickerTitle: sticker.title,
-          stickerImg: sticker.images.original.url,
-          stickerUrl: sticker.url,
+          elementTitle: sticker.title,
+          elementImg: sticker.images.original.url,
+          elementUrl: sticker.url,
           userProfileUrl: sticker.user?.profile_url || null,
           userAvatarImg: sticker.user?.avatar_url || null,
           username: sticker.user?.username || null,

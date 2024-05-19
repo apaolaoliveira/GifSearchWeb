@@ -5,10 +5,10 @@ export class GiphyService {
     this.root = document.querySelector(root);
   }
 
-  async displayGifs(query){
+  async displayData(dataType, query = ''){
     try {
-      const gifs = await Giphy.searchGifs(query);
-      this.updateDisplay(gifs);
+      const data = await Giphy[dataType](query);
+      this.updateDisplay(data);
     } catch (err) {
       console.log(err.message);
     }
