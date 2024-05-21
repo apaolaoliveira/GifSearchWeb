@@ -45,6 +45,14 @@
 
 }
 
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 1000px #2f3640 inset; 
+  -webkit-text-fill-color:  white !important;
+  caret-color: white;
+}
+
 @media screen and (max-width: 620px) {
   .search-wrapper:hover > #search-input {
     width: 150px;
