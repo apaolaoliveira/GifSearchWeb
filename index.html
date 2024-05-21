@@ -15,12 +15,12 @@
 <body>
   <div class="app">
     <header>
-      <h1>Giphy Search</h1>
+      <h1 id="page-title" title="Giphy search">Giphy Search</h1>
 
       <div class="search-wrapper">        
         <label for="search-input" class="sr-only">Search for a gif</label>
         <input type="text" id="search-input" value="" placeholder="Search for a gif">
-        <button id="search-btn">
+        <button id="search-btn" title="search">
           <i class="fa-solid fa-magnifying-glass"></i>
         </button>
       </div>
@@ -30,8 +30,8 @@
       <div class="loader"></div>
       <section class="content">
         <div class="btns-wrapper">
-          <button class="gifs-btn activated">gifs</button>
-          <button class="stickers-btn">stickers</button>
+          <button id="gifs-btn" class="activated">gifs</button>
+          <button id="stickers-btn">stickers</button>
         </div>
         <div class="gif-wrapper"></div>
       </section>

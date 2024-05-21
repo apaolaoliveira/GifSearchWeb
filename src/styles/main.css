@@ -43,6 +43,7 @@ header {
   justify-content: space-between;
   margin: 5rem 0 2rem;
   height: max-content;
+
   animation: fadeInDown;
   animation-duration: 2s;
   width: 62vw;
@@ -58,6 +59,7 @@ header h1 {
   -moz-background-clip: text; 
   -ms-background-clip: text; 
   -o-background-clip: text; 
+  cursor: pointer;
 }
 
 .content {

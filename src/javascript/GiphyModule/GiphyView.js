@@ -4,15 +4,47 @@ export class GiphyView extends GiphyService {
   constructor(root){
     super(root); 
     this.wrapper = this.root.querySelector('.gif-wrapper');
+    this.searchBtn = this.root.querySelector('#search-btn');
+    this.gifsBtn = this.root.querySelector('#gifs-btn');
+    this.stickersBtn = this.root.querySelector('#stickers-btn');
+    this.title = this.root.querySelector('#page-title');
+
+    this.activeBtn = 'gifs';
+    this.isSearchOrTrending = 'trending';
     this.animationDelay = 0;
-    this.onSearchClick();  
+    this.onClick();  
   }
 
-  onSearchClick(){
-    this.root.querySelector('#search-btn').onclick = () => {
-      const { value } = this.root.querySelector('#search-input');
-      this.displayData('searchGifs', value);
+  onClick(){
+    this.title.onclick = () => {
+      this.isSearchOrTrending = 'trending';
+      if(this.activeBtn == 'gifs') this.displayData('gifsTrending'); 
+      if(this.activeBtn =='stickers') this.displayData('stickersTrending');
     }
+
+    this.searchBtn.onclick = () => {
+      const { value } = this.root.querySelector('#search-input');
+      if(this.activeBtn == 'gifs') this.displayData('searchGifs', value);
+      if(this.activeBtn == 'stickers') this.displayData('searchStickers', value);
+      this.isSearchOrTrending = 'search';
+    }
+
+    this.gifsBtn.onclick = () => {
+      this.toggleActive();
+      this.activeBtn = 'gifs';
+      if(this.isSearchOrTrending == 'trending') this.displayData('gifsTrending'); 
+    }
+    
+    this.stickersBtn.onclick = () => {
+      this.toggleActive();
+      this.activeBtn ='stickers';
+      if(this.isSearchOrTrending == 'trending') this.displayData('stickersTrending'); 
+    }
+  }
+
+  toggleActive(){
+    this.gifsBtn.classList.toggle('activated');
+    this.stickersBtn.classList.toggle('activated');
   }
 
   updateDisplay(list){
@@ -60,7 +92,7 @@ export class GiphyView extends GiphyService {
       card.classList.add('animation');
       card.style.animationDelay = `${this.animationDelay}s`;
       this.animationDelay += .4;
-      
+
       this.wrapper.appendChild(card);
     });
   }

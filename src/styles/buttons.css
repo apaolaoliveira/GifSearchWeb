@@ -20,26 +20,26 @@
   border-radius: 2rem;
 }
 
-.gifs-btn {
+#gifs-btn {
   padding: .5rem 4.65rem;
 }
 
-.stickers-btn {
+#stickers-btn {
   padding: .5rem 3rem;
 }
 
-.gifs-btn.activated,
-.stickers-btn.activated {
+#gifs-btn.activated,
+#stickers-btn.activated {
   font-weight: 600;
   color: white;
 }
 
-.gifs-btn.activated {
+#gifs-btn.activated {
   background: linear-gradient(90deg, #883dff 0%, #6951ff 100%) !important;
   text-shadow: -2px 2px 2px #6337cb;
 }
 
-.stickers-btn.activated {
+#stickers-btn.activated {
   background: linear-gradient(90deg, #00d3f0 0%, #00f6aa 100%) !important;
   text-shadow: -2px 2px 2px #00b998;
 }
