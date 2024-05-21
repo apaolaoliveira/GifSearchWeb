@@ -7,7 +7,7 @@ export class GiphyView extends GiphyService {
     this.searchBtn = this.root.querySelector('#search-btn');
     this.gifsBtn = this.root.querySelector('#gifs-btn');
     this.stickersBtn = this.root.querySelector('#stickers-btn');
-    this.title = this.root.querySelector('#page-title');
+    this.trendingBtn = this.root.querySelector('#trending-btn');
 
     this.activeBtn = 'gifs';
     this.isSearchOrTrending = 'trending';
@@ -16,10 +16,11 @@ export class GiphyView extends GiphyService {
   }
 
   onClick(){
-    this.title.onclick = () => {
+    this.trendingBtn.onclick = () => {
       this.isSearchOrTrending = 'trending';
       if(this.activeBtn == 'gifs') this.displayData('gifsTrending'); 
       if(this.activeBtn =='stickers') this.displayData('stickersTrending');
+      this.trendingBtn.classList.add('activated');
     }
 
     this.searchBtn.onclick = () => {
@@ -27,6 +28,7 @@ export class GiphyView extends GiphyService {
       if(this.activeBtn == 'gifs') this.displayData('searchGifs', value);
       if(this.activeBtn == 'stickers') this.displayData('searchStickers', value);
       this.isSearchOrTrending = 'search';
+      this.trendingBtn.classList.remove('activated');
     }
 
     this.gifsBtn.onclick = () => {
