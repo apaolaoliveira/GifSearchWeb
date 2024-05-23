@@ -28,20 +28,33 @@
   order: 1;
 }
 
-.gif-info a {
+.actions-wrapper a {
   position: absolute;
   top: 1.3rem;
   right: 1.3rem;
   border-radius: 50%;
-
   text-decoration: none;
-  font-size: 1.6rem;
+}
+
+.actions-wrapper button {
+  position: absolute;
+  top: 1.3rem;
+  right: 4rem;
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+
+.actions-wrapper a, 
+.actions-wrapper button {
   color: white;
   cursor: pointer;
   display: none;
+  font-size: 1.6rem;
 }
 
-.gif-card:hover .gif-info a {
+.gif-card:hover .gif-info a,
+.gif-card:hover .actions-wrapper button {
   display: block;
   animation: fadeInRight;
   animation-duration: 1s;

@@ -104,9 +104,14 @@ export class GiphyView extends GiphyService {
     cardDiv.classList.add('gif-card');
     cardDiv.innerHTML =
     `<div class="gif-info">
-       <a title="Gif link" id="elementUrl" href="" target="_blank">
-         <i class="fa-solid fa-link"></i>
-       </a>
+       <div class="actions-wrapper">
+          <button type="button" id="favorite-btn" class="isFavorite">
+            <i class="fa-regular fa-heart"></i>
+          </button>
+          <a title="Gif link" id="elementUrl" href="" target="_blank">
+           <i class="fa-solid fa-link"></i>
+          </a>
+       </div>
        <div class="img-wrapper">
          <img id="elementImg" src="" alt="">
          <p id="title"></p>
