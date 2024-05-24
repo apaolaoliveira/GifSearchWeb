@@ -63,6 +63,7 @@ export class GiphyView extends GiphyService {
         userProfileUrl: '#userLink',
         userAvatarImg: '#avatar',
         username: '#username',
+        toggleFavoriteBtn: '#favorite-btn i',
       }
 
       Object.entries(selectorsMap).forEach(([key, selector]) => {
@@ -85,6 +86,12 @@ export class GiphyView extends GiphyService {
           case 'username':	
             element.textContent = currentElement[key] || 'unknown';
             break;
+          case 'toggleFavoriteBtn':
+            element.addEventListener('click', (event) => {
+              const currentElement = event.currentTarget;
+              this.toggleFavorite(currentElement);
+            });
+            break;
           default:
             element.textContent = currentElement[key];
             break;
@@ -97,6 +104,12 @@ export class GiphyView extends GiphyService {
 
       this.wrapper.appendChild(card);
     });
+  }
+
+  toggleFavorite(element){
+    const classes = element.classList;
+    classes.toggle('fa-solid');
+    classes.toggle('fa-regular');
   }
 
   generateCard(){

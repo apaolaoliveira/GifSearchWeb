@@ -1,27 +1,27 @@
 import { API_KEY } from './api-key.js';
 
 export class Giphy {
-  static searchGifs(query){
+   searchGifs(query){
     const endpoint = `https://api.giphy.com/v1/gifs/search?api_key=${API_KEY}&q=${query}&limit=12`;    
     return this.fetchGif(endpoint);
   }
 
-  static searchStickers(query) {
+   searchStickers(query) {
     const endpoint = `https://api.giphy.com/v1/stickers/search?api_key=${API_KEY}&q=${query}&limit=12`;    
     return this.fetchStickers(endpoint);
   }
 
-  static gifsTrending(){
+   gifsTrending(){
     const endpoint = `https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}&limit=12`;    
     return this.fetchGif(endpoint);
   }
 
-  static stickersTrending(){
+   stickersTrending(){
     const endpoint = `https://api.giphy.com/v1/stickers/trending?api_key=${API_KEY}&limit=12`;    
     return this.fetchStickers(endpoint);
   }
 
-  static fetchGif(endpoint) {
+   fetchGif(endpoint) {
     return fetch(endpoint)
      .then(response => response.json())
      .then(data => {
@@ -37,7 +37,7 @@ export class Giphy {
       });
   }
 
-  static fetchStickers(endpoint) {
+   fetchStickers(endpoint) {
     return fetch(endpoint)
      .then(response => response.json())
      .then(data => {
