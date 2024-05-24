@@ -63,7 +63,7 @@ export class GiphyView extends GiphyService {
         userProfileUrl: '#userLink',
         userAvatarImg: '#avatar',
         username: '#username',
-        toggleFavoriteBtn: '#favorite-btn i',
+        toggleFavoriteBtn: '#favorite-card-btn i',
       }
 
       Object.entries(selectorsMap).forEach(([key, selector]) => {
@@ -118,8 +118,8 @@ export class GiphyView extends GiphyService {
     cardDiv.innerHTML =
     `<div class="gif-info">
        <div class="actions-wrapper">
-          <button type="button" id="favorite-btn" class="isFavorite">
-            <i class="fa-regular fa-heart"></i>
+          <button type="button" id="favorite-card-btn" class="isFavorite">
+            <i class="fa-regular fa-star"></i>
           </button>
           <a title="Gif link" id="elementUrl" href="" target="_blank">
            <i class="fa-solid fa-link"></i>

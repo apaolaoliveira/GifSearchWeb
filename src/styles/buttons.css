@@ -12,6 +12,7 @@
   background-color: #2f3640;
   border-radius: 2rem;
   width: max-content;
+  margin: 0 4rem;
 }
 
 .btns-wrapper button {
@@ -23,18 +24,19 @@
   border-radius: 2rem;
 }
 
-#trending-btn {
-  margin-right: 4rem;
+#trending-btn, #favorites-btn {
   cursor: pointer;
   transition: scale .4s ease;
   color: #969696;
 }
 
-#trending-btn:hover {
+#trending-btn:hover,
+#favorites-btn:hover {
   scale: 1.05;
 }
 
-#trending-btn.activated {
+#trending-btn.activated,
+#favorites-btn.activated {
   color: var(--primary-color);
 }
 
