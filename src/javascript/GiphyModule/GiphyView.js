@@ -8,6 +8,7 @@ export class GiphyView extends GiphyService {
     this.gifsBtn = this.root.querySelector('#gifs-btn');
     this.stickersBtn = this.root.querySelector('#stickers-btn');
     this.trendingBtn = this.root.querySelector('#trending-btn');
+    this.favoritesBtn = this.root.querySelector('#favorites-btn');
 
     this.activeBtn = 'gifs';
     this.isSearchOrTrending = 'trending';
@@ -42,6 +43,10 @@ export class GiphyView extends GiphyService {
       this.toggleActive();
       this.activeBtn ='stickers';
       if(this.isSearchOrTrending == 'trending') this.displayData('stickersTrending'); 
+    }
+
+    this.favoritesBtn.onclick = () => {
+      this.updateDisplay(this.favorites);
     }
   }
 
