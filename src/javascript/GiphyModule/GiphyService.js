@@ -4,6 +4,7 @@ export class GiphyService {
   constructor(root) {
     this.root = document.querySelector(root);
     this.giphy = new Giphy();
+    this.loadFromLocalStorage();
   }
 
   async displayData(dataType, query = ''){
@@ -13,5 +14,18 @@ export class GiphyService {
     } catch (err) {
       console.log(err.message);
     }
+  }
+
+  loadFromLocalStorage(){
+    this.favorites = JSON.parse(localStorage.getItem('@giphys-favorites:')) || [];
+  }
+
+  saveOnLocalStorage(){
+    localStorage.setItem('@giphys-favorites:', JSON.stringify(this.favorites));
+  }
+
+  addToFavorites(element){
+    this.favorites = [element, ...this.favorites];
+    this.saveOnLocalStorage();
   }
 }

@@ -52,7 +52,7 @@ export class GiphyView extends GiphyService {
   updateDisplay(list){
     this.removeAllCards();
 
-    list.forEach(currentElement => {
+    list.forEach(currentItem => {
       const card = this.generateCard();
 
       const selectorsMap = {
@@ -71,29 +71,29 @@ export class GiphyView extends GiphyService {
 
         switch (key) {
           case 'elementImg':
-            element.src = currentElement[key];
+            element.src = currentItem[key];
             break;          
           case 'elementImgAlt':
-            element.alt = currentElement[key];
+            element.alt = currentItem[key];
             break;
           case 'elementUrl':
           case 'userProfileUrl':
-            element.href = currentElement[key] || '#';
+            element.href = currentItem[key] || '#';
             break;
           case 'userAvatarImg':
-            element.src = currentElement[key] || this.randomMockUserImg();
+            element.src = currentItem[key] || this.randomMockUserImg();
             break;
           case 'username':	
-            element.textContent = currentElement[key] || 'unknown';
+            element.textContent = currentItem[key] || 'unknown';
             break;
           case 'toggleFavoriteBtn':
             element.addEventListener('click', (event) => {
               const currentElement = event.currentTarget;
-              this.toggleFavorite(currentElement);
+              this.toggleFavorite(currentElement, currentItem);              
             });
             break;
           default:
-            element.textContent = currentElement[key];
+            element.textContent = currentItem[key];
             break;
         }
       });
@@ -106,10 +106,11 @@ export class GiphyView extends GiphyService {
     });
   }
 
-  toggleFavorite(element){
+  toggleFavorite(element, card){
     const classes = element.classList;
     classes.toggle('fa-solid');
     classes.toggle('fa-regular');
+    this.addToFavorites(card);
   }
 
   generateCard(){
