@@ -57,10 +57,9 @@ export class GiphyView extends GiphyService {
       const card = this.generateCard();
 
       const selectorsMap = {
-        elementTitle: '#title',
-        elementImg: '#elementImg',
-        elementImgAlt: '#elementImg',
-        elementUrl: '#elementUrl',
+        title: '#title',
+        img: '#elementImg',
+        url: '#elementUrl',
         userProfileUrl: '#userLink',
         userAvatarImg: '#avatar',
         username: '#username',
@@ -71,13 +70,10 @@ export class GiphyView extends GiphyService {
         const element = card.querySelector(selector);
 
         switch (key) {
-          case 'elementImg':
+          case 'img':
             element.src = currentItem[key];
-            break;          
-          case 'elementImgAlt':
-            element.alt = currentItem[key];
-            break;
-          case 'elementUrl':
+            break;       
+          case 'url':
           case 'userProfileUrl':
             element.href = currentItem[key] || '#';
             break;
@@ -112,7 +108,7 @@ export class GiphyView extends GiphyService {
     classes.toggle('fa-solid');
     classes.toggle('fa-regular');
 
-    card.isFavorite =!card.isFavorite;
+    card.isFavorite = !card.isFavorite;
     if(card.isFavorite) this.addToFavorites(card);
     else this.removeFromFavorites(card);
   }
