@@ -28,4 +28,9 @@ export class GiphyService {
     this.favorites = [element, ...this.favorites];
     this.saveOnLocalStorage();
   }
+
+  removeFromFavorites(element){
+    this.favorites = this.favorites.filter(favorite => favorite.id !== element.id);
+    this.saveOnLocalStorage();
+  }
 }

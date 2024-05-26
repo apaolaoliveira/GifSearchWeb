@@ -26,6 +26,7 @@ export class Giphy {
      .then(response => response.json())
      .then(data => {
        return data.data.map(gif => ({
+          id: gif.id,
           elementTitle: gif.title,
           elementImg: gif.images.original.url,
           elementImgAlt: gif.alt_text,
@@ -33,6 +34,7 @@ export class Giphy {
           userProfileUrl: gif.user?.profile_url || null,
           userAvatarImg: gif.user?.avatar_url || null,
           username: gif.user?.username || null,
+          isFavorite: false,
         }));
       });
   }
@@ -42,12 +44,14 @@ export class Giphy {
      .then(response => response.json())
      .then(data => {
        return data.data.map(sticker => ({
+          id: sticker.id,
           elementTitle: sticker.title,
           elementImg: sticker.images.original.url,
           elementUrl: sticker.url,
           userProfileUrl: sticker.user?.profile_url || null,
           userAvatarImg: sticker.user?.avatar_url || null,
           username: sticker.user?.username || null,
+          isFavorite: false,
         }));
       });
   }

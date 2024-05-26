@@ -12,6 +12,7 @@ export class GiphyView extends GiphyService {
     this.activeBtn = 'gifs';
     this.isSearchOrTrending = 'trending';
     this.animationDelay = 0;
+    this.isFavorite = false;
     this.onClick();  
   }
 
@@ -110,7 +111,10 @@ export class GiphyView extends GiphyService {
     const classes = element.classList;
     classes.toggle('fa-solid');
     classes.toggle('fa-regular');
-    this.addToFavorites(card);
+
+    card.isFavorite =!card.isFavorite;
+    if(card.isFavorite) this.addToFavorites(card);
+    else this.removeFromFavorites(card);
   }
 
   generateCard(){
