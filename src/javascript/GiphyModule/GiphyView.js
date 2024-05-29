@@ -63,61 +63,65 @@ export class GiphyView extends GiphyService {
   }
 
   updateDisplay(list){
-    this.removeAllCards();
-
+    this.resetCards();
     list.forEach(currentItem => {
       const card = this.generateCard();
-      const favoriteBtnFromCard = card.querySelector('#favorite-card-btn i');
-
-      if(this.findFavoritesFromLocalStorage(currentItem)) {
-        favoriteBtnFromCard.classList.add('fa-solid');
-        favoriteBtnFromCard.classList.remove('fa-regular');
-      }
-
-      const selectorsMap = {
-        title: '#title',
-        img: '#elementImg',
-        url: '#elementUrl',
-        userProfileUrl: '#userLink',
-        userAvatarImg: '#avatar',
-        username: '#username',
-      }
-
-      Object.entries(selectorsMap).forEach(([key, selector]) => {
-        const element = card.querySelector(selector);
-
-        switch (key) {
-          case 'img':
-            element.src = currentItem[key];
-            break;       
-          case 'url':
-          case 'userProfileUrl':
-            element.href = currentItem[key] || '#';
-            break;
-          case 'userAvatarImg':
-            element.src = currentItem[key] || this.randomMockUserImg();
-            break;
-          case 'username':	
-            element.textContent = currentItem[key] || 'unknown';
-            break;
-          default:
-            element.textContent = currentItem[key];
-            break;
-        }
-      });
-      
-      favoriteBtnFromCard.onclick = (event) => {
-        const currentElement = event.currentTarget;
-        this.toggleFavorite(currentElement, currentItem);
-      }
-
-      card.classList.add('animation');
-      card.style.animationDelay = `${this.animationDelay}s`;
-      this.animationDelay += .4;
-
+      this.updateCardElements(card, currentItem);
       this.wrapper.appendChild(card);
     });
   }
+
+  updateCardElements(card, currentItem) {
+    const favoriteBtnFromCard = card.querySelector('#favorite-card-btn i');
+
+    if(this.findFavoritesFromLocalStorage(currentItem)) {
+      favoriteBtnFromCard.classList.add('fa-solid');
+      favoriteBtnFromCard.classList.remove('fa-regular');
+    }
+
+    const selectorsMap = {
+      title: '#title',
+      img: '#elementImg',
+      url: '#elementUrl',
+      userProfileUrl: '#userLink',
+      userAvatarImg: '#avatar',
+      username: '#username',
+    }
+
+    this.updateCardContent(card, selectorsMap, currentItem);
+    
+    favoriteBtnFromCard.onclick = (event) => 
+      this.toggleFavorite(event.currentTarget, currentItem);
+  
+    card.classList.add('animation');
+    card.style.animationDelay = `${this.animationDelay}s`;
+    this.animationDelay += .4;
+  }
+
+  updateCardContent(card, selectorsMap, currentItem){
+    Object.entries(selectorsMap).forEach(([key, selector]) => {
+      const element = card.querySelector(selector);
+
+      switch (key) {
+        case 'img':
+          element.src = currentItem[key];
+          break;       
+        case 'url':
+        case 'userProfileUrl':
+          element.href = currentItem[key] || '#';
+          break;
+        case 'userAvatarImg':
+          element.src = currentItem[key] || this.randomMockUserImg();
+          break;
+        case 'username':	
+          element.textContent = currentItem[key] || 'unknown';
+          break;
+        default:
+          element.textContent = currentItem[key];
+          break;
+      }
+    });
+  } 
 
   toggleFavorite(element, card){
     const classes = element.classList;
@@ -158,8 +162,9 @@ export class GiphyView extends GiphyService {
     return cardDiv;
   }
 
-  removeAllCards(){
+  resetCards(){
     this.wrapper.innerHTML = '';
+    this.animationDelay = 0;
   }
 
   randomMockUserImg(){
