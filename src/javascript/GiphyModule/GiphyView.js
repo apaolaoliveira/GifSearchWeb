@@ -13,7 +13,6 @@ export class GiphyView extends GiphyService {
     this.activeBtn = 'gifs';
     this.isSearchOrTrending = 'trending';
     this.animationDelay = 0;
-    this.isFavorite = false;
     this.onClick();  
   }
 
@@ -23,6 +22,7 @@ export class GiphyView extends GiphyService {
       if(this.activeBtn == 'gifs') this.displayData('gifsTrending'); 
       if(this.activeBtn =='stickers') this.displayData('stickersTrending');
       this.trendingBtn.classList.add('activated');
+      this.favoritesBtn.classList.remove('activated');
     }
 
     this.searchBtn.onclick = () => {
@@ -47,6 +47,8 @@ export class GiphyView extends GiphyService {
 
     this.favoritesBtn.onclick = () => {
       this.updateDisplay(this.favorites);
+      this.favoritesBtn.classList.add('activated');
+      this.trendingBtn.classList.remove('activated');
     }
   }
 
@@ -60,6 +62,12 @@ export class GiphyView extends GiphyService {
 
     list.forEach(currentItem => {
       const card = this.generateCard();
+      const favoriteBtnFromCard = card.querySelector('#favorite-card-btn i');
+
+      if(this.findFavoritesFromLocalStorage(currentItem)) {
+        favoriteBtnFromCard.classList.add('fa-solid');
+        favoriteBtnFromCard.classList.remove('fa-regular');
+      }
 
       const selectorsMap = {
         title: '#title',
@@ -68,7 +76,6 @@ export class GiphyView extends GiphyService {
         userProfileUrl: '#userLink',
         userAvatarImg: '#avatar',
         username: '#username',
-        toggleFavoriteBtn: '#favorite-card-btn i',
       }
 
       Object.entries(selectorsMap).forEach(([key, selector]) => {
@@ -88,17 +95,16 @@ export class GiphyView extends GiphyService {
           case 'username':	
             element.textContent = currentItem[key] || 'unknown';
             break;
-          case 'toggleFavoriteBtn':
-            element.addEventListener('click', (event) => {
-              const currentElement = event.currentTarget;
-              this.toggleFavorite(currentElement, currentItem);              
-            });
-            break;
           default:
             element.textContent = currentItem[key];
             break;
         }
       });
+      
+      favoriteBtnFromCard.onclick = (event) => {
+        const currentElement = event.currentTarget;
+        this.toggleFavorite(currentElement, currentItem);
+      }
 
       card.classList.add('animation');
       card.style.animationDelay = `${this.animationDelay}s`;

@@ -33,4 +33,10 @@ export class GiphyService {
     this.favorites = this.favorites.filter(favorite => favorite.id !== element.id);
     this.saveOnLocalStorage();
   }
+
+  findFavoritesFromLocalStorage(card){
+    const favoriteCard = this.favorites.filter(favorite => favorite.id === card.id);
+    if(favoriteCard.length > 0) return true;
+    return false;
+  }
 }
