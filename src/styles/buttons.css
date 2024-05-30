@@ -15,6 +15,18 @@
   margin: 0 4rem;
 }
 
+.toggle-wrapper.disabled {
+  background: var(--bg-gradient) !important;
+}
+
+.toggle-wrapper.disabled #gifs-btn,
+.toggle-wrapper.disabled #stickers-btn {
+  font-weight: 600;
+  color: white !important;
+  text-shadow: -2px 2px 2px #858586;
+  cursor: not-allowed;
+}
+
 .btns-wrapper button {
   border: none;
   background: transparent;
