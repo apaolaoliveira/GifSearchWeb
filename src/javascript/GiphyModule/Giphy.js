@@ -1,23 +1,16 @@
 import { API_KEY } from './api-key.js';
 
 export class Giphy {
-   searchGifs(query){
-    const endpoint = `https://api.giphy.com/v1/gifs/search?api_key=${API_KEY}&q=${query}&limit=12`;    
+  API_URL = 'https://api.giphy.com/v1';
+  params = `api_key=${API_KEY}&offset=0&rating=g&limit=12`;
+
+  searchGiphys(gifsOrStickers, query) {
+    const endpoint = `${this.API_URL}/${gifsOrStickers}/search?${this.params}&q=${query}`;    
     return this.fetch(endpoint);
   }
 
-   searchStickers(query) {
-    const endpoint = `https://api.giphy.com/v1/stickers/search?api_key=${API_KEY}&q=${query}&limit=12`;    
-    return this.fetch(endpoint);
-  }
-
-   gifsTrending(){
-    const endpoint = `https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}&limit=12`;    
-    return this.fetch(endpoint);
-  }
-
-   stickersTrending(){
-    const endpoint = `https://api.giphy.com/v1/stickers/trending?api_key=${API_KEY}&limit=12`;    
+  trendingGiphys(gifsOrStickers){
+    const endpoint = `${this.API_URL}/${gifsOrStickers}/trending?${this.params}`;    
     return this.fetch(endpoint);
   }
 

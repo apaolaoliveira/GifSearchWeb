@@ -26,14 +26,14 @@ export class GiphyView extends GiphyService {
 
   handleTrendingBtnClick(){
     this.isSearchOrTrending = 'trending';
-    this.displayData(this.isGifOrSticker === 'gifs' ? 'gifsTrending' : 'stickersTrending'); 
+    this.displayData(this.isSearchOrTrending, this.isGifOrSticker); 
     this.toggleActivation(this.trendingBtn, this.favoritesBtn);
   }
 
   handleSearchBtnClick(){
     this.isSearchOrTrending = 'search';
     const { value } = this.root.querySelector('#search-input');
-    this.displayData(this.isGifOrSticker === 'gifs' ? 'searchGifs' : 'searchStickers', value);
+    this.displayData(this.isSearchOrTrending, this.isGifOrSticker, value);
     this.trendingBtn.classList.remove('activated');
     this.favoritesBtn.classList.remove('activated');
   }
