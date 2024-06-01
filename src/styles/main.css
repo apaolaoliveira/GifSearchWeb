@@ -30,6 +30,20 @@ body * {
   justify-content: center;
 }
 
+::-webkit-scrollbar{
+  width: .7rem; 
+  height: .7rem;
+}
+
+::-webkit-scrollbar-track, ::-webkit-scrollbar-corner{
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb{
+  background-color: var(--primary-color);
+  border-radius: 5rem;
+}
+
 .app {
   min-height: 100vh;
   margin: 0 auto;
