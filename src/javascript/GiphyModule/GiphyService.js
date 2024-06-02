@@ -42,4 +42,9 @@ export class GiphyService {
     if(favoriteCard.length > 0) return true;
     return false;
   }
+  
+  isThereAnyFavorite(){
+    if(this.favorites.length > 0) return true;
+    return false;
+  }
 }
