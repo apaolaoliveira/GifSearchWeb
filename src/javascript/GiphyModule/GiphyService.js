@@ -37,7 +37,7 @@ export class GiphyService {
     this.saveOnLocalStorage();
   }
 
-  findFavoritesFromLocalStorage(card){
+  isFavoriteFromLocalStorage(card){
     const favoriteCard = this.favorites.filter(favorite => favorite.id === card.id);
     if(favoriteCard.length > 0) return true;
     return false;

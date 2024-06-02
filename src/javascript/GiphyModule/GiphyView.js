@@ -74,10 +74,8 @@ export class GiphyView extends GiphyService {
   updateCardElements(card, currentItem) {
     const favoriteBtnFromCard = card.querySelector('#favorite-card-btn i');
 
-    if(this.findFavoritesFromLocalStorage(currentItem)) {
-      favoriteBtnFromCard.classList.add('fa-solid');
-      favoriteBtnFromCard.classList.remove('fa-regular');
-    }
+    if(this.isFavoriteFromLocalStorage(currentItem)) 
+      this.updateFavoriteIcon(favoriteBtnFromCard);
 
     const selectorsMap = {
       title: '#title',
@@ -124,13 +122,17 @@ export class GiphyView extends GiphyService {
   } 
 
   toggleFavorite(element, card){
+    this.updateFavoriteIcon(element);
+    card.isFavorite = !card.isFavorite;
+
+    if(card.isFavorite) this.addToFavorites(card);
+    else this.removeFromFavorites(card);
+  }
+
+  updateFavoriteIcon(element){
     const classes = element.classList;
     classes.toggle('fa-solid');
     classes.toggle('fa-regular');
-
-    card.isFavorite = !card.isFavorite;
-    if(card.isFavorite) this.addToFavorites(card);
-    else this.removeFromFavorites(card);
   }
 
   generateCard(){
