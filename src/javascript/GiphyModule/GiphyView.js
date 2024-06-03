@@ -9,6 +9,7 @@ export class GiphyView extends GiphyService {
     this.gifsBtn = this.root.querySelector('#gifs-btn');
     this.stickersBtn = this.root.querySelector('#stickers-btn');
     this.favoritesBtn = this.root.querySelector('#favorites-btn');
+    this.noFavoritesYetMessage = this.root.querySelector('#no-favorites-yet');
 
     this.isGifOrSticker = 'gifs';
     this.isSearchOrTrending = 'trending';
@@ -28,6 +29,7 @@ export class GiphyView extends GiphyService {
     this.isSearchOrTrending = 'trending';
     this.displayData(this.isSearchOrTrending, this.isGifOrSticker); 
     this.toggleActivation(this.trendingBtn, this.favoritesBtn);
+    this.updateMessageDisplay();
   }
 
   handleSearchBtnClick(){
@@ -36,6 +38,7 @@ export class GiphyView extends GiphyService {
     this.displayData(this.isSearchOrTrending, this.isGifOrSticker, value);
     this.trendingBtn.classList.remove('activated');
     this.favoritesBtn.classList.remove('activated');
+    this.updateMessageDisplay();
   }
 
   handleGifsBtnClick(){
@@ -55,6 +58,15 @@ export class GiphyView extends GiphyService {
   handleFavoritesBtnClick() {
     this.updateDisplay(this.favorites);
     this.toggleActivation(this.favoritesBtn, this.trendingBtn);
+    this.updateMessageDisplay();
+  }
+
+  updateMessageDisplay(){
+    if(this.noFavorites() && this.favoritesBtn.classList.contains("activated")){
+      this.noFavoritesYetMessage.style.display = 'block';
+      return;
+    }
+    this.noFavoritesYetMessage.style.display = 'none';
   }
 
   toggleActivation(activeElement, inactiveElement){

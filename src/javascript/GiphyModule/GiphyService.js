@@ -43,8 +43,8 @@ export class GiphyService {
     return false;
   }
   
-  isThereAnyFavorite(){
-    if(this.favorites.length > 0) return true;
+  noFavorites(){
+    if(this.favorites.length <= 0) return true;
     return false;
   }
 }
