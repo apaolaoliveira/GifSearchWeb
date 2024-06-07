@@ -4,15 +4,18 @@ export class GiphyView extends GiphyService {
   constructor(root){
     super(root); 
     this.wrapper = this.root.querySelector('.gif-wrapper');
+    this.searchWrapper = this.root.querySelector('.search-wrapper');
+    this.searchInput = this.root.querySelector('#search-input');
     this.searchBtn = this.root.querySelector('#search-btn');
+
     this.trendingBtn = this.root.querySelector('#trending-btn');
     this.gifsBtn = this.root.querySelector('#gifs-btn');
     this.stickersBtn = this.root.querySelector('#stickers-btn');
     this.favoritesBtn = this.root.querySelector('#favorites-btn');
     this.noFavoritesYetMessage = this.root.querySelector('#no-favorites-yet');
 
-    this.isGifOrSticker = 'gifs';
-    this.isSearchOrTrending = 'trending';
+    this.selectedType = 'gifs';
+    this.selectedActionBtn = 'trending';
     this.animationDelay = 0;
     this.onClick();  
   }
@@ -26,39 +29,53 @@ export class GiphyView extends GiphyService {
   }
 
   handleTrendingBtnClick(){
-    this.isSearchOrTrending = 'trending';
-    this.displayData(this.isSearchOrTrending, this.isGifOrSticker); 
-    this.toggleActivation(this.trendingBtn, this.favoritesBtn);
+    this.selectedActionBtn = 'trending';
+    this.handleActivatedBtn();
+    this.displayData(this.selectedActionBtn, this.selectedType); 
     this.updateMessageDisplay();
   }
 
   handleSearchBtnClick(){
-    this.isSearchOrTrending = 'search';
-    const { value } = this.root.querySelector('#search-input');
-    this.displayData(this.isSearchOrTrending, this.isGifOrSticker, value);
-    this.trendingBtn.classList.remove('activated');
-    this.favoritesBtn.classList.remove('activated');
+    this.selectedActionBtn = 'search';
+    this.handleActivatedBtn();
+    this.displayData(this.selectedActionBtn, this.selectedType, this.searchInput.value);
+    this.updateMessageDisplay();
+  }
+
+  handleFavoritesBtnClick() {
+    this.selectedActionBtn = 'favorites';
+    this.handleActivatedBtn();
+    this.updateDisplay(this.favorites);
     this.updateMessageDisplay();
   }
 
   handleGifsBtnClick(){
-    this.isGifOrSticker = 'gifs';
-    this.toggleActivation(this.gifsBtn, this.stickersBtn);
-    this.isSearchOrTrending == 'trending'? 
+    this.selectedType = 'gifs';
+    this.handleActivatedBtn();
+    this.selectedActionBtn == 'trending'? 
       this.handleTrendingBtnClick() : this.handleSearchBtnClick(); 
   }
 
   handleStickersBtnClick() {
-    this.isGifOrSticker = 'stickers';
-    this.toggleActivation(this.stickersBtn, this.gifsBtn);
-    this.isSearchOrTrending == 'trending'? 
+    this.selectedType = 'stickers';
+    this.handleActivatedBtn();
+    this.selectedActionBtn == 'trending'? 
       this.handleTrendingBtnClick() : this.handleSearchBtnClick(); 
   }
 
-  handleFavoritesBtnClick() {
-    this.updateDisplay(this.favorites);
-    this.toggleActivation(this.favoritesBtn, this.trendingBtn);
-    this.updateMessageDisplay();
+  handleActivatedBtn() {
+    const btnsList = {
+      gifs: this.gifsBtn,
+      stickers: this.stickersBtn,
+      trending: this.trendingBtn,
+      search: this.searchWrapper,
+      favorites: this.favoritesBtn
+    };
+  
+    Object.values(btnsList).forEach(btn => btn.classList.remove('activated'));
+  
+    btnsList[this.selectedActionBtn].classList.add('activated');
+    btnsList[this.selectedType].classList.add('activated');
   }
 
   updateMessageDisplay(){
@@ -67,11 +84,6 @@ export class GiphyView extends GiphyService {
       return;
     }
     this.noFavoritesYetMessage.style.display = 'none';
-  }
-
-  toggleActivation(activeElement, inactiveElement){
-    activeElement.classList.add('activated');
-    inactiveElement.classList.remove('activated');
   }
 
   updateDisplay(list){
