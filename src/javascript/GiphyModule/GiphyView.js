@@ -184,7 +184,6 @@ export class GiphyView extends GiphyService {
          <span id="username"></span>
        </a>
      </div>`;
-Q
     return cardDiv;
   }
 
