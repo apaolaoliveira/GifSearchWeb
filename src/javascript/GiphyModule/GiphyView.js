@@ -3,7 +3,7 @@ import { GiphyService } from './GiphyService.js';
 export class GiphyView extends GiphyService {
   constructor(root){
     super(root); 
-    this.wrapper = this.root.querySelector('.gif-wrapper');
+    this.giphyWrapper = this.root.querySelector('.giphy-wrapper');
     this.searchWrapper = this.root.querySelector('.search-wrapper');
     this.searchInput = this.root.querySelector('#search-input');
     this.searchBtn = this.root.querySelector('#search-btn');
@@ -91,7 +91,7 @@ export class GiphyView extends GiphyService {
     list.forEach(currentItem => {
       const card = this.generateCard();
       this.updateCardElements(card, currentItem);
-      this.wrapper.appendChild(card);
+      this.giphyWrapper.appendChild(card);
     });
   }
 
@@ -161,14 +161,14 @@ export class GiphyView extends GiphyService {
 
   generateCard(){
     const cardDiv = document.createElement('div');
-    cardDiv.classList.add('gif-card');
+    cardDiv.classList.add('giphy-card');
     cardDiv.innerHTML =
-    `<div class="gif-info">
+    `<div class="giphy-info">
        <div class="actions-wrapper">
           <button type="button" id="favorite-card-btn" class="isFavorite">
             <i class="fa-regular fa-star"></i>
           </button>
-          <a title="Gif link" id="elementUrl" href="" target="_blank">
+          <a title="Giphy link" id="elementUrl" href="" target="_blank">
            <i class="fa-solid fa-link"></i>
           </a>
        </div>
@@ -184,12 +184,12 @@ export class GiphyView extends GiphyService {
          <span id="username"></span>
        </a>
      </div>`;
-
+Q
     return cardDiv;
   }
 
   resetCards(){
-    this.wrapper.innerHTML = '';
+    this.giphyWrapper.innerHTML = '';
     this.animationDelay = 0;
   }
 

@@ -1,10 +1,10 @@
-.gif-wrapper {
+.giphy-wrapper {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 3rem;
 }
 
-.gif-card {
+.giphy-card {
   color: white;
   border-radius: 1rem;
 
@@ -15,14 +15,14 @@
   overflow: hidden;
 }
 
-.gif-card.animation {
+.giphy-card.animation {
   animation: zoomIn;
   animation-delay: var(--delay);
   animation-duration: 1s;
   animation-fill-mode: backwards;
 }
 
-.gif-info {
+.giphy-info {
   display: grid;
   grid-template-rows: repeat(2, max-content);
   order: 1;
@@ -53,25 +53,25 @@
   font-size: 1.6rem;
 }
 
-.gif-card:hover .gif-info a,
-.gif-card:hover .actions-wrapper button {
+.giphy-card:hover .giphy-info a,
+.giphy-card:hover .actions-wrapper button {
   display: block;
   animation: fadeInRight;
   animation-duration: 1s;
 }
 
-.gif-info .img-wrapper {
+.giphy-info .img-wrapper {
   position: relative;
 }
 
-.gif-info .img-wrapper img {
+.giphy-info .img-wrapper img {
   height: 250px;
   width: 250px;
   border-radius: 1rem;
   object-fit: cover;
 }
 
-.gif-info .img-wrapper p {
+.giphy-info .img-wrapper p {
   position: absolute;
   background-color: rgba(0, 0, 0, 0.5);
   bottom: -15px;
@@ -81,13 +81,13 @@
   display: none;
 }
 
-.gif-card:hover .img-wrapper p {
+.giphy-card:hover .img-wrapper p {
   display: block;
   animation: fadeInUp;
   animation-duration: 1s;
 }
 
-.gif-info p {
+.giphy-info p {
   margin: 1.5rem 0;
   font-size: 1.8rem;
   text-transform: uppercase;

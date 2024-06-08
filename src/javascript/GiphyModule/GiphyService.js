@@ -7,12 +7,11 @@ export class GiphyService {
     this.loadFromLocalStorage();
   }
 
-  async displayData(dataType, gifsOrStickers, query = ''){
+  async displayData(selectedAction, selectedType, query = ''){
     try {
       let data;
-      if(dataType == 'search') data = await this.giphy.searchGiphys(gifsOrStickers, query);
-      else data = await this.giphy.trendingGiphys(gifsOrStickers);
-
+      if(selectedAction == 'search') data = await this.giphy.searchGiphys(selectedType, query);
+      else data = await this.giphy.trendingGiphys(selectedType);
       this.updateDisplay(data);
     } catch (err) {
       console.log(err.message);
