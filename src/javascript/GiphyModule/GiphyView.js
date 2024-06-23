@@ -23,24 +23,21 @@ export class GiphyView extends GiphyService {
   }
 
   onClick(){
-    this.searchBtn.onclick = () => this.handleSearchBtnClick();
-    this.trendingBtn.onclick = () => this.handleTrendingBtnClick();
+    this.searchBtn.onclick = () => this.handleTrendingAndSearchBtnClick('search');
+    this.trendingBtn.onclick = () => this.handleTrendingAndSearchBtnClick('trending');
     this.gifsBtn.onclick = () => this.handleGifsBtnClick();    
     this.stickersBtn.onclick = () => this.handleStickersBtnClick();
     this.favoritesBtn.onclick = () => this.handleFavoritesBtnClick();
   }
 
-  handleTrendingBtnClick(){
-    this.selectedActionBtn = 'trending';
+  handleTrendingAndSearchBtnClick(searchOrTrending){
+    this.selectedActionBtn = searchOrTrending;
+    this.displayData(
+      this.selectedActionBtn, 
+      this.selectedType, 
+      this.searchInput.value
+    );
     this.handleActivatedBtn();
-    this.displayData(this.selectedActionBtn, this.selectedType); 
-    this.updateMessageDisplay();
-  }
-
-  handleSearchBtnClick(){
-    this.selectedActionBtn = 'search';
-    this.handleActivatedBtn();
-    this.displayData(this.selectedActionBtn, this.selectedType, this.searchInput.value);
     this.updateMessageDisplay();
   }
 
