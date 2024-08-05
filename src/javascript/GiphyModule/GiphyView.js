@@ -4,6 +4,7 @@ import { GiphyService } from './GiphyService.js';
 export class GiphyView extends GiphyService {
   constructor(root){
     super(root); 
+    this.toggleWrapper = this.root.querySelector('.toggle-wrapper');
     this.giphyWrapper = this.root.querySelector('.giphy-wrapper');
     this.searchWrapper = this.root.querySelector('.search-wrapper');
     this.searchInput = this.root.querySelector('#search-input');
@@ -39,6 +40,8 @@ export class GiphyView extends GiphyService {
     );
     this.handleActivatedBtn();
     this.updateMessageDisplay();
+    this.isBtnsDisabled(false);
+    if(this.selectedActionBtn != 'search') this.searchInput.value = '';
   }
 
   handleFavoritesBtnClick() {
@@ -46,6 +49,8 @@ export class GiphyView extends GiphyService {
     this.handleActivatedBtn();
     this.updateDisplay(this.favorites);
     this.updateMessageDisplay();
+    this.isBtnsDisabled(true);
+    if(this.selectedActionBtn != 'search') this.searchInput.value = '';
   }
 
   handleGifsBtnClick(){
@@ -95,5 +100,12 @@ export class GiphyView extends GiphyService {
   resetCards(){
     this.giphyWrapper.innerHTML = '';
     this.animationDelay = 0;
+  }
+
+  isBtnsDisabled(isDisabled){
+    isDisabled? this.toggleWrapper.classList.add('disabled')
+    : this.toggleWrapper.classList.remove('disabled');
+    this.gifsBtn.disabled = isDisabled;
+    this.stickersBtn.disabled = isDisabled;
   }
 }

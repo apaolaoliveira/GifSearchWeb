@@ -25,6 +25,7 @@
   color: white !important;
   text-shadow: -2px 2px 2px #858586;
   cursor: not-allowed;
+  background: transparent !important;
 }
 
 .btns-wrapper button {
