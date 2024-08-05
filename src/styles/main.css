@@ -81,6 +81,7 @@ header h1 {
   grid-template-rows: max-content max-content;
   gap: 2rem;
   width: 100%;
+  margin-bottom: 9rem;
 }
 
 #no-favorites-yet {
