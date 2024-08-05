@@ -51,15 +51,13 @@ export class GiphyView extends GiphyService {
   handleGifsBtnClick(){
     this.selectedType = 'gifs';
     this.handleActivatedBtn();
-    this.selectedActionBtn == 'trending'? 
-      this.handleTrendingBtnClick() : this.handleSearchBtnClick(); 
+    this.handleTrendingAndSearchBtnClick(this.selectedActionBtn);
   }
 
   handleStickersBtnClick() {
     this.selectedType = 'stickers';
     this.handleActivatedBtn();
-    this.selectedActionBtn == 'trending'? 
-      this.handleTrendingBtnClick() : this.handleSearchBtnClick(); 
+    this.handleTrendingAndSearchBtnClick(this.selectedActionBtn);
   }
 
   handleActivatedBtn() {
