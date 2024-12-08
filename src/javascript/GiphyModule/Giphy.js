@@ -1,4 +1,4 @@
-import { API_KEY } from './api-key.js';
+import { API_KEY } from '../../../config.js';
 
 export class Giphy {
   API_URL = 'https://api.giphy.com/v1';
