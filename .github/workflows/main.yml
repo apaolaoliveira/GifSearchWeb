@@ -1,0 +1,21 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set API key dynamically
+        run: |
+          echo "export const API_KEY = '${{ secrets.API_KEY }}';" > ./config.js
+
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v1
